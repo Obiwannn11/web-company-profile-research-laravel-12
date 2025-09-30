@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('tool_translations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('tool_id')->constrained('tools')->onDelete('cascade');
+            $table->string('locale')->index();
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->unique(['tool_id','locale']);
             $table->timestamps();
         });
     }
