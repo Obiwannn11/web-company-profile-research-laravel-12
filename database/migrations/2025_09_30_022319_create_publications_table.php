@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('publications', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->foreignId('publication_category_id')->constrained('publication_categories')->onDelete('cascade');
+            $table->string('hero_image')->nullable();
             $table->timestamps();
         });
     }
