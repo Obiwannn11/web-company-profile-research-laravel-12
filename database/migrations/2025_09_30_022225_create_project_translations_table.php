@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('project_translations', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('project_id')->constrained()->onDelete('cascade');
+            $table->string('locale')->index();
+            $table->string('title');
+            $table->text('details')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }
