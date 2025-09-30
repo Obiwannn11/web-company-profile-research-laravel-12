@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('faqs', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('sort_order')->default(0);
+            $table->string('video_url')->nullable();
             $table->timestamps();
         });
     }

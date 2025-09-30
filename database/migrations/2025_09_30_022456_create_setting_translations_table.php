@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('setting_translations', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('key')->index();
+            $table->string('locale')->index();
+            $table->longText('value')->nullable();
+            $table->unique(['key', 'locale']);
             $table->timestamps();
         });
     }
