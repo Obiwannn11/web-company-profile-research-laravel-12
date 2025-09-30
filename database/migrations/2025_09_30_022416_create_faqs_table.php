@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('sort_order')->default(0);
-            $table->string('video_url')->nullable();
             $table->timestamps();
         });
     }
