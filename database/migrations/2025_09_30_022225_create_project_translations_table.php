@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('details')->nullable();
             $table->longText('description')->nullable();
+            $table->unique(['project_id', 'locale']);
             $table->timestamps();
         });
     }
