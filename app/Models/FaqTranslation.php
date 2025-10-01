@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Faq;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class FaqTranslation extends Model
 {
@@ -15,4 +16,9 @@ class FaqTranslation extends Model
         'question',
         'answer',
     ];
+
+    public function faq()
+    {
+        return $this->belongsTo(Faq::class);
+    }
 }

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\FaqTranslation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Faq extends Model
 {
@@ -13,4 +14,9 @@ class Faq extends Model
         'name',
         'sort_order',
     ];
+
+    public function translations()
+    {
+        return $this->hasMany(FaqTranslation::class);
+    }
 }

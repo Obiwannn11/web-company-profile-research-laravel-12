@@ -14,4 +14,9 @@ class Team extends Model
         'photo',
         'sort_order',
     ];
+
+    public function translations()
+    {
+        return $this->hasMany(TeamTranslation::class);
+    }
 }
