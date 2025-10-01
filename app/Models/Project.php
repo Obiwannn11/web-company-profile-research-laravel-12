@@ -2,12 +2,18 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ProjectTranslation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Project extends Model
 {
     use HasFactory;
 
     protected $fillable = ['name', 'type', 'category', 'image', 'sort_order'];
+
+    public function translations()
+    {
+        return $this->hasMany(ProjectTranslation::class);
+    }
 }
