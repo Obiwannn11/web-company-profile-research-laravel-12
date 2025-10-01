@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\ToolTranslation;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tool extends Model
 {
@@ -15,4 +16,9 @@ class Tool extends Model
         'description',
         'video_url',
     ];
+
+    public function translations()
+    {
+        return $this->hasMany(ToolTranslation::class);
+    }
 }

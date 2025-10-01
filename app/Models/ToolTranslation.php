@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Tool;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ToolTranslation extends Model
 {
@@ -14,6 +15,10 @@ class ToolTranslation extends Model
         'locale',
         'title',
         'description',
-
     ];
+
+    public function tool()
+    {
+        return $this->belongsTo(Tool::class);
+    }
 }

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Publication;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class PublicationCategory extends Model
 {
@@ -12,4 +13,9 @@ class PublicationCategory extends Model
         'name',
         'slug',
     ];
+
+    public function publications()
+    {
+        return $this->hasMany(Publication::class);
+    }
 }
