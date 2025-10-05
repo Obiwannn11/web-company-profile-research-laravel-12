@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\View\View;
+use App\View\Composers\NavbarComposer;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +21,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+         View::composer('components.navbar', NavbarComposer::class);
     }
 }
