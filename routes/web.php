@@ -10,7 +10,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PublicationController;
 
 Route::get('/', function () {
-    return redirect()->route('home', ['locale' => 'id']);
+    return redirect()->route('locale.home', ['locale' => 'id']);
 });
 
 // 2. Grup untuk semua route yang memiliki prefix bahasa
