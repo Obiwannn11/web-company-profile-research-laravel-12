@@ -12,20 +12,20 @@ class AboutController extends Controller
 
     public function company() 
     {
-        $company = SettingTranslation::query()
+        $companySettings = SettingTranslation::query()
                     ->where('locale', app()->getLocale())
                     ->where('key', 'like', 'company.%')
                     ->pluck('value', 'key');
-        return view('pages.about.company', compact('company'));
+        return view('pages.about.company', compact('companySettings'));
     }
 
     public function team()
     {
-        $teams = Team::query()
+        $teamMembers = Team::query()
                 ->with('translations')
                 ->orderBy('sort_order', 'asc')
                 ->get();
-        return view('pages.about.team', compact('teams'));
+        return view('pages.about.team', compact('teamMembers'));
     }
 
     public function faq()

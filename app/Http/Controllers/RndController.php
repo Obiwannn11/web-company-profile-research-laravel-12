@@ -58,7 +58,7 @@ class RndController extends Controller
                         ->orderBy('sort_order', 'asc')
                         ->get();
 
-        return view('pages.rnd.publication', compact('externalpublication', 'internalpublication'));
+        return view('pages.rnd.publications', compact('externalpublication', 'internalpublication'));
     }
     
 }
