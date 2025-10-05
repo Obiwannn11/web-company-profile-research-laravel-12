@@ -12,6 +12,8 @@ class Project extends Model
 
     protected $fillable = ['name', 'type', 'category', 'image', 'sort_order'];
 
+    //category = internal/external
+    //type = project/research/publication
     public function translations()
     {
         return $this->hasMany(ProjectTranslation::class);
