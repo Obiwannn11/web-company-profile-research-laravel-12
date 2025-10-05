@@ -1,4 +1,5 @@
-{{-- Menggunakan Alpine.js untuk state dropdown/mobile menu --}}
+{{-- x-data mendefinisikan "state" untuk komponen ini --}}
+{{-- servicesOpen dan aboutOpen awalnya 'false' (tertutup) --}}
 <header x-data="{ open: false, servicesOpen: false, aboutOpen: false }" class="bg-white shadow-md sticky top-0 z-50">
     <nav class="container mx-auto px-6 py-4">
         <div class="flex items-center justify-between">
@@ -10,11 +11,14 @@
             <div class="hidden md:flex items-center space-x-6">
                 {{-- Dropdown Services --}}
                 <div class="relative">
+                    {{-- @click akan mengubah nilai servicesOpen saat tombol diklik --}}
                     <button @click="servicesOpen = !servicesOpen" class="flex items-center text-gray-700 hover:text-blue-600">
                         Services
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div x-show="servicesOpen" @click.away="servicesOpen = false" x-transition class="absolute mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
+                    {{-- x-show membuat elemen ini hanya tampil jika servicesOpen adalah 'true' --}}
+                    {{-- @click.away akan menutup menu jika mengklik di luar area ini --}}
+                    <div x-show="servicesOpen" @click.away="servicesOpen = false" x-transition class="absolute mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20" style="display: none;">
                         @foreach ($servicesForNavbar as $service)
                             @php
                                 $translation = $service->translations->firstWhere('locale', app()->getLocale());
@@ -35,7 +39,7 @@
                         About Us
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
                     </button>
-                    <div x-show="aboutOpen" @click.away="aboutOpen = false" x-transition class="absolute mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20">
+                    <div x-show="aboutOpen" @click.away="aboutOpen = false" x-transition class="absolute mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20" style="display: none;">
                         <a href="{{ route('locale.about.company', ['locale' => app()->getLocale()]) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Company</a>
                         <a href="{{ route('locale.about.team', ['locale' => app()->getLocale()]) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Team</a>
                         <a href="{{ route('locale.about.faq', ['locale' => app()->getLocale()]) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">FAQ</a>
@@ -45,7 +49,6 @@
 
             {{-- Language Switcher & Mobile Menu Button --}}
             <div class="flex items-center">
-                {{-- Logika Language Switcher --}}
                 @php
                     $currentLocale = app()->getLocale();
                     $targetLocale = ($currentLocale == 'id') ? 'en' : 'id';
@@ -56,19 +59,12 @@
                 <a href="{{ route($currentRouteName, $allParams) }}" class="text-sm font-semibold text-gray-600 hover:text-blue-600 mr-4">
                     {{ strtoupper($targetLocale) }}
                 </a>
-
-                {{-- Tombol Hamburger untuk Mobile --}}
                 <div class="md:hidden">
                     <button @click="open = !open">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                     </button>
                 </div>
             </div>
-        </div>
-
-        {{-- Mobile Menu --}}
-        <div x-show="open" class="md:hidden mt-4">
-            {{-- Isi menu mobile bisa ditambahkan di sini, mirip dengan menu desktop --}}
         </div>
     </nav>
 </header>
