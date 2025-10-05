@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RndController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ToolController;
 use App\Http\Controllers\AboutController;
@@ -26,10 +27,10 @@ Route::prefix('{locale}')
     Route::get('/services/{slug}', [ServiceController::class, 'show'])->name('services.show');
 
     // Routes untuk R&D
-    Route::prefix('rd')->name('rnd.')->group(function() {
-        Route::get('/projects', [ProjectController::class, 'projects'])->name('projects');
-        Route::get('/research', [ProjectController::class, 'research'])->name('research');
-        Route::get('/publications', [PublicationController::class, 'publications'])->name('publications');
+    Route::prefix('rnd')->name('rnd.')->group(function() {
+        Route::get('/projects', [RndController::class, 'projects'])->name('projects');
+        Route::get('/research', [RndController::class, 'research'])->name('research');
+        Route::get('/publication', [RndController::class, 'publication'])->name('publication');
     });
 
     // Route untuk Tools
