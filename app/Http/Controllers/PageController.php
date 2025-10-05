@@ -17,6 +17,6 @@ class PageController extends Controller
             ->limit(3)
             ->get();
 
-        return route('locale.home', compact('featuredServices'));
+        return view('pages.home', compact('featuredServices'));
     }
 }

@@ -15,6 +15,6 @@ class ToolController extends Controller
         ->with('translations')
         ->orderBy('created_at', 'asc')
         ->get();
-        return route('locale.tools.index', compact('tools'));
+        return view('pages.tools.index', compact('tools'));
     }
 }

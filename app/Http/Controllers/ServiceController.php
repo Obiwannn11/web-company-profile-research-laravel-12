@@ -13,7 +13,7 @@ class ServiceController extends Controller
                     ->with('translations')
                     ->orderBy('sort_order', 'asc')
                     ->get();
-        return route('locale.services.index', compact('services'));
+        return view('pages.services.index', compact('services'));
     }
 
     public function show($slug)
@@ -23,6 +23,6 @@ class ServiceController extends Controller
                     ->with('translations')
                     ->firstOrFail();
 
-        return route('locale.services.show', compact('services'));
+        return view('pages.services.show', compact('services'));
     }
 }

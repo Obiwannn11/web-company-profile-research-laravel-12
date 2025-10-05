@@ -16,7 +16,7 @@ class AboutController extends Controller
                     ->where('locale', app()->getLocale())
                     ->where('key', 'like', 'company.%')
                     ->pluck('value', 'key');
-        return route('locale.about.company', compact('company'));
+        return view('pages.about.company', compact('company'));
     }
 
     public function team()
@@ -25,7 +25,7 @@ class AboutController extends Controller
                 ->with('translations')
                 ->orderBy('sort_order', 'asc')
                 ->get();
-        return route('locale.about.team', compact('teams'));
+        return view('pages.about.team', compact('teams'));
     }
 
     public function faq()
@@ -34,7 +34,7 @@ class AboutController extends Controller
                 ->with('translations')
                 ->orderBy('sort_order', 'asc')
                 ->get();
-        return route('locale.about.faq', compact('faqs'));
+        return view('pages.about.faq', compact('faqs'));
     }
 
     public function contact()
@@ -44,7 +44,7 @@ class AboutController extends Controller
             ->where('key', 'like', 'contact.%')
             ->pluck('value', 'key');
 
-        return route('locale.contact.index', compact('contacts'));
+        return view('pages.about.contact', compact('contacts'));
     }
 
 }

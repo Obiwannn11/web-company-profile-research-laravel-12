@@ -22,7 +22,7 @@ class RndController extends Controller
                         ->orderBy('sort_order', 'asc')
                         ->get();
 
-        return route('locale.rnd.projects', compact('externalProjects', 'internalProjects'));
+        return view('pages.rnd.projects', compact('externalProjects', 'internalProjects'));
     }
 
     public function research()
@@ -40,7 +40,7 @@ class RndController extends Controller
                         ->orderBy('sort_order', 'asc')
                         ->get();
 
-        return route('locale.rnd.research', compact('externalResearch', 'internalResearch'));
+        return view('pages.rnd.research', compact('externalResearch', 'internalResearch'));
     }
 
     public function publication()
@@ -58,7 +58,7 @@ class RndController extends Controller
                         ->orderBy('sort_order', 'asc')
                         ->get();
 
-        return route('locale.rnd.publication', compact('externalpublication', 'internalpublication'));
+        return view('pages.rnd.publication', compact('externalpublication', 'internalpublication'));
     }
     
 }
