@@ -14,10 +14,11 @@ Route::get('/', function () {
 });
 
 // 2. Grup untuk semua route yang memiliki prefix bahasa
-Route::prefix('{locale}')
-    ->where(['locale' => '[a-z]{2}']) // Memastikan locale hanya 2 huruf (en, id, dll)
-    ->name('locale.') // Memberi awalan nama route, cth: locale.services.index
-    ->group(function () {
+Route::group([
+    'prefix' => '{locale}',
+    'where' => ['locale' => '[a-z]{2}'],
+    'as' => 'locale.', // 'as' adalah alias untuk 'name' dalam grup
+    ], function() {
 
     // Route untuk Home
     Route::get('/', [PageController::class, 'home'])->name('home');
