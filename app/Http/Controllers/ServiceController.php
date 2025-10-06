@@ -11,18 +11,20 @@ class ServiceController extends Controller
     {
         $services = Service::query()
                     ->with('translations')
-                    ->orderBy('sort_order', 'asc')
+                    ->orderBy('created_at', 'asc')
                     ->get();
         return view('pages.services.index', compact('services'));
     }
 
-    public function show($slug)
+    public function show($locale, $slug)
     {
-        $services = Service::query()
+
+        // dd($slug);
+        $service = Service::query()
                     ->where('slug', $slug)
                     ->with('translations')
                     ->firstOrFail();
 
-        return view('pages.services.show', compact('services'));
+        return view('pages.services.show', compact('service'));
     }
 }
