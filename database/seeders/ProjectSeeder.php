@@ -25,6 +25,22 @@ class ProjectSeeder extends Seeder
             ],
             [
                 'name' => 'Project 2',
+                'type' => 'project', 'category' => 'internal', 'icon' => 'placeholders/proj_icon1.png',
+                'title_id' => 'Sistem Monitoring Lampu PT XYZ', 'details_id' => 'Klien: PT XYZ',
+                'desc_id' => 'Deskripsi lengkap tentang proyek sistem monitoring...',
+                'title_en' => 'Waste Monitoring System for PT XYZ', 'details_en' => 'Client: PT XYZ',
+                'desc_en' => 'Full description about the monitoring system project...',
+            ],
+            [
+                'name' => 'Research 1',
+                'type' => 'research', 'category' => 'external', 'icon' => 'placeholders/proj_icon2.png',
+                'title_id' => 'Riset Material Alternatif Hemat Biaya', 'details_id' => 'Status: Berlangsung',
+                'desc_id' => 'Deskripsi lengkap tentang riset internal material...',
+                'title_en' => 'Research on Cost-Effective Material Alternatives', 'details_en' => 'Status: Ongoing',
+                'desc_en' => 'Full description about the internal material research...',
+            ],
+            [
+                'name' => 'Research 2',
                 'type' => 'research', 'category' => 'internal', 'icon' => 'placeholders/proj_icon2.png',
                 'title_id' => 'Riset Material Alternatif Ramah Lingkungan', 'details_id' => 'Status: Berlangsung',
                 'desc_id' => 'Deskripsi lengkap tentang riset internal material...',
