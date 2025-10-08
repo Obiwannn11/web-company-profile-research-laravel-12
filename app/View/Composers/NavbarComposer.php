@@ -12,13 +12,31 @@ class NavbarComposer
      */
     public function compose(View $view): void
     {
-        // 1. Ambil semua data service beserta terjemahannya.
-        $services = Service::query()
-            ->with('translations')
-            ->orderBy('created_at', 'asc')
-            ->get();
+        $services = Service::query()->with('translations')->orderBy('created_at', 'asc')->get();
 
-        // 2. Kirim (bind) data tersebut ke view dengan nama variabel 'servicesForNavbar'
-        $view->with('servicesForNavbar', $services);
+        $currentLocale = app()->getLocale();
+        $targetLocale = ($currentLocale == 'id') ? 'en' : 'id';
+        
+        // Cek apakah route saat ini ada
+        if (request()->route()) {
+            $currentRouteName = request()->route()->getName();
+            $currentRouteParams = request()->route()->parameters();
+        
+            // Ganti locale di dalam array parameter
+            $currentRouteParams['locale'] = $targetLocale;
+
+            // Baru buat URL dengan parameter yang sudah diubah
+            $languageSwitchUrl = route($currentRouteName, $currentRouteParams);
+        } else {
+            // default route
+            $languageSwitchUrl = route('locale.home', ['locale' => $targetLocale]);
+        }
+        
+        $view->with([
+            'servicesForNavbar' => $services,
+            'currentLocale' => $currentLocale,
+            'targetLocale' => $targetLocale,
+            'languageSwitchUrl' => $languageSwitchUrl
+        ]);
     }
 }

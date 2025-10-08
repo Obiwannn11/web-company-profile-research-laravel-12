@@ -49,14 +49,7 @@
 
             {{-- Language Switcher & Mobile Menu Button --}}
             <div class="flex items-center">
-                @php
-                    $currentLocale = app()->getLocale();
-                    $targetLocale = ($currentLocale == 'id') ? 'en' : 'id';
-                    $currentRouteName = request()->route()->getName();
-                    $currentRouteParams = request()->route()->parameters();
-                    $allParams = array_merge($currentRouteParams, ['locale' => $targetLocale]);
-                @endphp
-                <a href="{{ route($currentRouteName, $allParams) }}" class="text-sm font-semibold text-gray-600 hover:text-blue-600 mr-4">
+                <a href="{{ $languageSwitchUrl }}" class="text-sm font-semibold text-gray-600 hover:text-blue-600 mr-4">
                     {{ strtoupper($targetLocale) }}
                 </a>
                 <div class="md:hidden">
