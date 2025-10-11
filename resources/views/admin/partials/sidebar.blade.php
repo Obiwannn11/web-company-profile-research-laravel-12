@@ -1,0 +1,16 @@
+{{-- Latar belakang gelap untuk overlay di mobile --}}
+<div x-show="sidebarOpen" @click="sidebarOpen = false" class="fixed inset-0 z-20 bg-black opacity-50 transition-opacity lg:hidden"></div>
+
+{{-- Sidebar --}}
+<div :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto bg-gray-800 text-white transition duration-300 transform lg:translate-x-0 lg:static lg:inset-0">
+    <div class="flex items-center justify-center mt-8">
+        <a href="{{ route('admin.dashboard') }}" class="text-2xl font-semibold">ReadyLab Admin</a>
+    </div>
+
+    <nav class="mt-10">
+        <a href="{{ route('admin.dashboard') }}" class="flex items-center px-6 py-2 mt-4 text-gray-100 bg-gray-700">
+            <span class="mx-3">Dashboard</span>
+        </a>
+        {{-- Link-link menu lainnya akan ditambahkan di sini --}}
+    </nav>
+</div>
