@@ -70,4 +70,17 @@ Route::post('/admin/login', [AuthController::class, 'login']);
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function() {
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::prefix('services')->name('services.')->group(function() {
+        Route::get('/', [ServiceController::class, 'index'])->name('index');
+        Route::get('/create', [ServiceController::class, 'create'])->name('create');
+        Route::post('', [ServiceController::class, 'store'])->name('store');
+        Route::get('/{service}/edit', [ServiceController::class, 'edit'])->name('edit');
+        Route::put('/{service}', [ServiceController::class, 'update'])->name('update');
+        Route::delete('/{service}', [ServiceController::class, 'destroy'])->name('destroy');
+        Route::get('/{service}', [ServiceController::class, 'show'])->name('show');
+    });
+
+    
+
 });
