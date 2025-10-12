@@ -9,7 +9,36 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 
+
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/admin/login', [AuthController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AuthController::class, 'login']);
+
+Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function() {
+    Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::prefix('services')->name('services.')->group(function() {
+        Route::get('/', [AdminServiceController::class, 'index'])->name('index');
+        Route::get('/create', [AdminServiceController::class, 'create'])->name('create');
+        Route::post('', [AdminServiceController::class, 'store'])->name('store');
+        Route::get('/{service}/edit', [AdminServiceController::class, 'edit'])->name('edit');
+        Route::put('/{service}', [AdminServiceController::class, 'update'])->name('update');
+        Route::delete('/{service}', [AdminServiceController::class, 'destroy'])->name('destroy');
+        Route::get('/{service}', [AdminServiceController::class, 'show'])->name('show');
+    });
+
+    
+
+});
 
 /*
 |--------------------------------------------------------------------------
@@ -58,29 +87,3 @@ Route::group([
 
     });
 
-/*
-|--------------------------------------------------------------------------
-| Admin Routes
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/admin/login', [AuthController::class, 'showLoginForm'])->name('admin.login');
-Route::post('/admin/login', [AuthController::class, 'login']);
-
-Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function() {
-    Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-    Route::prefix('services')->name('services.')->group(function() {
-        Route::get('/', [ServiceController::class, 'index'])->name('index');
-        Route::get('/create', [ServiceController::class, 'create'])->name('create');
-        Route::post('', [ServiceController::class, 'store'])->name('store');
-        Route::get('/{service}/edit', [ServiceController::class, 'edit'])->name('edit');
-        Route::put('/{service}', [ServiceController::class, 'update'])->name('update');
-        Route::delete('/{service}', [ServiceController::class, 'destroy'])->name('destroy');
-        Route::get('/{service}', [ServiceController::class, 'show'])->name('show');
-    });
-
-    
-
-});
