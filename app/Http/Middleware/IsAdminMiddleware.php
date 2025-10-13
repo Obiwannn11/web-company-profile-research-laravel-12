@@ -6,6 +6,7 @@ use Closure;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use PgSql\Lob;
 use Symfony\Component\HttpFoundation\Response;
 
 class IsAdminMiddleware
@@ -20,6 +21,6 @@ class IsAdminMiddleware
         if(Auth::check() && Auth::user()->role == User::ROLE_ADMIN ) {
             return $next($request);
         }
-        return redirect('/');
+        return redirect()->route('login')->with('error', 'You do not have admin access.');
     }
 }
