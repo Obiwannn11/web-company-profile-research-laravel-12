@@ -8,6 +8,7 @@ use App\Http\Controllers\ToolController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\Admin\TeamController as AdminTeamController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 
@@ -34,6 +35,15 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
         Route::put('/{service}', [AdminServiceController::class, 'update'])->name('update');
         Route::delete('/{service}', [AdminServiceController::class, 'destroy'])->name('destroy');
         Route::get('/{service}', [AdminServiceController::class, 'show'])->name('show');
+    });
+
+    Route::controller(AdminTeamController::class)->prefix('team')->name('team.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{team}/edit', 'edit')->name('edit');
+        Route::put('/{team}', 'update')->name('update');
+        Route::delete('/{team}', 'destroy')->name('destroy');
     });
 
     
