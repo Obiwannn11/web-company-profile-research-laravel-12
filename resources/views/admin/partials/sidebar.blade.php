@@ -15,5 +15,9 @@
        class="flex items-center px-6 py-2 mt-4 text-gray-100 hover:bg-gray-600 {{ request()->routeIs('admin.services.*') ? 'bg-gray-700' : '' }}">
         <span class="mx-3">Kelola Layanan</span>
     </a>
+
+    <a href="{{ route('admin.team.index') }}" class="flex items-center px-6 py-2 mt-4 text-gray-100 hover:bg-gray-600 {{ request()->routeIs('admin.team.*') ? 'bg-gray-700' : '' }}">
+        <span class="mx-3">Kelola Tim</span>
+    </a>
     </nav>
 </div>
