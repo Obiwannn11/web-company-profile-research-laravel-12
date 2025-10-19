@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FaqController;
 use App\Http\Controllers\RndController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PageController;
@@ -8,8 +9,9 @@ use App\Http\Controllers\ToolController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
-use App\Http\Controllers\Admin\TeamController as AdminTeamController;
 use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\Admin\FaqController as AdminFaqController;
+use App\Http\Controllers\Admin\TeamController as AdminTeamController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 
 
@@ -44,6 +46,15 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
         Route::get('/{team}/edit', 'edit')->name('edit');
         Route::put('/{team}', 'update')->name('update');
         Route::delete('/{team}', 'destroy')->name('destroy');
+    });
+
+    Route::controller(AdminFaqController::class)->prefix('faq')->name('faq.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{faq}/edit', 'edit')->name('edit');
+        Route::put('/{faq}', 'update')->name('update');
+        Route::delete('/{faq}', 'destroy')->name('destroy');
     });
 
     
