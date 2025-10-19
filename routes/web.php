@@ -12,6 +12,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\Admin\FaqController as AdminFaqController;
 use App\Http\Controllers\Admin\TeamController as AdminTeamController;
+use App\Http\Controllers\Admin\ToolController as AdminToolController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 
 
@@ -55,6 +56,16 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
         Route::get('/{faq}/edit', 'edit')->name('edit');
         Route::put('/{faq}', 'update')->name('update');
         Route::delete('/{faq}', 'destroy')->name('destroy');
+    });
+
+
+    Route::controller(AdminToolController::class)->prefix('tools')->name('tools.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{tool}/edit', 'edit')->name('edit');
+        Route::put('/{tool}', 'update')->name('update');
+        Route::delete('/{tool}', 'destroy')->name('destroy');
     });
 
     
