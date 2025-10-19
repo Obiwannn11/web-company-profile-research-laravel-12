@@ -8,6 +8,7 @@
     <div class="bg-white p-6 rounded-lg shadow-md">
         <form action="{{ route('admin.tools.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
+            
             {{-- DATA UTAMA --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                 <div>
@@ -18,19 +19,23 @@
                 <div>
                     <label for="video_url" class="block text-sm font-medium text-gray-700">URL Video (Opsional)</label>
                     <input type="url" name="video_url" id="video_url"
-                           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                           class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500" placeholder="https://www.youtube.com/watch?v=...">
                 </div>
             </div>
+
             <hr class="my-6">
-            {{-- DATA TRANSLASI --}}
+
+            {{-- DATA TRANSLASI (TABS) --}}
             <div x-data="{ activeTab: 'id' }">
+                {{-- Tombol Tabs --}}
                 <div class="border-b border-gray-200">
-                    <nav class="-mb-px flex space-x-8" aria-label="Tabs">
+                    <nav class="-mb-px flex space-x-8">
                         <button type="button" @click="activeTab = 'id'" :class="activeTab === 'id' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'" class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">Bahasa Indonesia (ID)</button>
                         <button type="button" @click="activeTab = 'en'" :class="activeTab === 'en' ? 'border-blue-500 text-blue-600' : 'border-transparent text-gray-500 hover:text-gray-700'" class="whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">English (EN)</button>
                     </nav>
                 </div>
-                {{-- TAB ID --}}
+
+                {{-- Konten Tab ID --}}
                 <div x-show="activeTab === 'id'" class="mt-6 space-y-6">
                     <div>
                         <label for="title_id" class="block text-sm font-medium text-gray-700">Judul (ID)</label>
@@ -41,7 +46,8 @@
                         <textarea name="translations[id][description]" id="description_id" rows="4" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm"></textarea>
                     </div>
                 </div>
-                {{-- TAB EN --}}
+
+                {{-- Konten Tab EN --}}
                 <div x-show="activeTab === 'en'" class="mt-6 space-y-6">
                     <div>
                         <label for="title_en" class="block text-sm font-medium text-gray-700">Title (EN)</label>
@@ -53,6 +59,8 @@
                     </div>
                 </div>
             </div>
+
+            {{-- Tombol Submit --}}
             <div class="mt-8 border-t pt-6">
                 <button type="submit" class="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700">Simpan</button>
                 <a href="{{ route('admin.tools.index') }}" class="ml-4 text-gray-600 hover:text-gray-800">Batal</a>
