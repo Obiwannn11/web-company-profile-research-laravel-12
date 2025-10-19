@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -87,5 +88,12 @@ class ProjectController extends Controller
         }
 
         return redirect()->route('admin.projects.index')->with('success', 'Item R&D berhasil diperbarui.');
+    }
+
+    public function destroy(Project $project)
+    {
+        Storage::disk('public')->delete($project->icon_image);
+        $project->delete();
+        return redirect()->route('admin.projects.index')->with('success', 'Item R&D berhasil dihapus.');
     }
 }
