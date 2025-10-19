@@ -13,6 +13,7 @@ use App\Http\Controllers\PublicationController;
 use App\Http\Controllers\Admin\FaqController as AdminFaqController;
 use App\Http\Controllers\Admin\TeamController as AdminTeamController;
 use App\Http\Controllers\Admin\ToolController as AdminToolController;
+use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
 
 
@@ -66,6 +67,15 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
         Route::get('/{tool}/edit', 'edit')->name('edit');
         Route::put('/{tool}', 'update')->name('update');
         Route::delete('/{tool}', 'destroy')->name('destroy');
+    });
+
+    Route::controller(AdminProjectController::class)->prefix('projects')->name('projects.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{project}/edit', 'edit')->name('edit');
+        Route::put('/{project}', 'update')->name('update');
+        Route::delete('/{project}', 'destroy')->name('destroy');
     });
 
     

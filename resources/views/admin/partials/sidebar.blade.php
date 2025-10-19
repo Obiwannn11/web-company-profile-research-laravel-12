@@ -20,6 +20,10 @@
         <span class="mx-3">Kelola Tim</span>
     </a>
 
+    <a href="{{ route('admin.projects.index') }}" class="flex items-center px-6 py-2 mt-4 text-gray-100 hover:bg-gray-600 {{ request()->routeIs('admin.projects.*') ? 'bg-gray-700 bg-opacity-75' : '' }}">
+        <span class="mx-3">Kelola R&D</span>
+    </a>
+
     <a href="{{ route('admin.faq.index') }}" class="flex items-center px-6 py-2 mt-4 text-gray-100 hover:bg-gray-600 {{ request()->routeIs('admin.faq.*') ? 'bg-gray-700 bg-opacity-75' : '' }}">
             <span class="mx-3">Kelola FAQ</span>
         </a>
