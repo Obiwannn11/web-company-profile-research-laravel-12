@@ -10,6 +10,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\Admin\SiteContentController;
 use App\Http\Controllers\PublicationCategoryController;
 use App\Http\Controllers\Admin\FaqController as AdminFaqController;
 use App\Http\Controllers\Admin\TeamController as AdminTeamController;
@@ -98,6 +99,11 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
         Route::put('/{publication}', 'update')->name('update');
         Route::delete('/{publication}', 'destroy')->name('destroy');
     });
+
+    Route::controller(SiteContentController::class)->prefix('settings')->name('settings.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::post('/', 'update')->name('update');
+});
 
     
 

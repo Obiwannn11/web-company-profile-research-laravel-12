@@ -46,5 +46,10 @@
         <a href="{{ route('admin.publications.index') }}" class="flex items-center px-6 py-2 mt-4 text-gray-100 hover:bg-gray-600 {{ request()->routeIs('admin.publications.*') ? 'bg-gray-700 bg-opacity-75' : '' }}">
         <span class="mx-3">Kelola Publikasi</span>
     </a>
+
+    <a href="{{ route('admin.settings.index') }}" class="flex items-center px-6 py-2 mt-4 text-gray-100 hover:bg-gray-600 {{ request()->routeIs('admin.settings.*') ? 'bg-gray-700 bg-opacity-75' : '' }}">
+        <span class="mx-3">Pengaturan Situs</span>
+    </a>
+    
     </nav>
 </div>
