@@ -287,3 +287,6 @@ Buat CRUD lengkap untuk "Carousel" di admin panel. Ikuti pola yang sama persis s
         </div>
     </div>
     ```
+
+
+    ## (BONUS) Menambahkan berbagai banyak bahasa (Multi Bahasa atau Lebih dari 2 Bahasa) (Masih Perencanaan)
