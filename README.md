@@ -1,9 +1,3 @@
-Tentu, saya akan buatkan file `README.md` yang lengkap untuk proyek Anda, termasuk cara implementasi fitur carousel yang Anda minta.
-
------
-
-Berikut adalah isi dari file `README.md` yang bisa Anda salin langsung ke proyek Anda.
-
 # Website Company Profile - ReadyLab
 
 Ini adalah proyek website company profile untuk "ReadyLab", sebuah perusahaan riset dan pengembangan. Website ini dibangun menggunakan Laravel 12, Tailwind CSS, dan Alpine.js. Proyek ini dilengkapi dengan panel admin (CMS) kustom untuk mengelola semua konten dinamis di website, termasuk dukungan penuh untuk multi-bahasa (Indonesia & Inggris).
