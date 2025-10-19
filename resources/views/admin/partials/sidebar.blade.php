@@ -40,8 +40,11 @@
 
         <a href="{{ route('admin.publication-categories.index') }}"
             class="flex items-center px-6 py-2 mt-4 text-gray-100 hover:bg-gray-600 {{ request()->routeIs('admin.publication-categories.*') ? 'bg-gray-700 bg-opacity-75' : '' }}">
-            <span class="mx-3">Kelola Kategori</span>
+            <span class="mx-3">Kelola Kategori Publikasi</span>
         </a>
-        
+
+        <a href="{{ route('admin.publications.index') }}" class="flex items-center px-6 py-2 mt-4 text-gray-100 hover:bg-gray-600 {{ request()->routeIs('admin.publications.*') ? 'bg-gray-700 bg-opacity-75' : '' }}">
+        <span class="mx-3">Kelola Publikasi</span>
+    </a>
     </nav>
 </div>

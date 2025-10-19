@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\TeamController as AdminTeamController;
 use App\Http\Controllers\Admin\ToolController as AdminToolController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Admin\ServiceController as AdminServiceController;
+use App\Http\Controllers\Admin\PublicationController as AdminPublicationController;
 use App\Http\Controllers\Admin\PublicationCategoryController as AdminPublicationCategoryController;
 
 
@@ -87,6 +88,15 @@ Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(f
         Route::get('/{category}/edit', 'edit')->name('edit');
         Route::put('/{category}', 'update')->name('update');
         Route::delete('/{category}', 'destroy')->name('destroy');
+    });
+
+    Route::controller(AdminPublicationController::class)->prefix('publications')->name('publications.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{publication}/edit', 'edit')->name('edit');
+        Route::put('/{publication}', 'update')->name('update');
+        Route::delete('/{publication}', 'destroy')->name('destroy');
     });
 
     
