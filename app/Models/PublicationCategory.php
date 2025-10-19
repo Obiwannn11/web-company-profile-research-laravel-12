@@ -18,4 +18,9 @@ class PublicationCategory extends Model
     {
         return $this->hasMany(Publication::class);
     }
+
+    public function translations()
+    {
+        return $this->hasMany(PublicationCategoryTranslation::class, 'pub_category_trans');
+    }
 }
