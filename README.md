@@ -53,8 +53,8 @@ Berikut adalah langkah-langkah untuk menjalankan proyek ini di lingkungan lokal.
 1.  **Clone Repositori**
 
     ```bash
-    git clone [URL_REPOSITORI_ANDA]
-    cd [NAMA_FOLDER_PROYEK]
+    git clone https://github.com/Obiwannn11/web-company-profile-research-laravel-12.git
+    cd web-company-profile-research-laravel-12
     ```
 
 2.  **Install Dependensi PHP**
@@ -156,7 +156,7 @@ Pola ini digunakan untuk elemen-elemen teks di website yang sifatnya tunggal dan
 
 -----
 
-## (BONUS) Menambahkan Fitur Carousel
+## (BONUS) Menambahkan Fitur Carousel (Masih Perencanaan)
 
 Berikut adalah cara menambahkan fitur carousel dinamis di homepage yang kontennya bisa dikelola dari admin.
 
