@@ -7,11 +7,11 @@
 {{-- 1. Hero Section --}}
 <div class="relative bg-gray-800 text-white py-20 md:py-32">
     <div class="container mx-auto px-6 text-center">
-        <h1 class="text-4xl md:text-6xl font-bold leading-tight">Inovasi Melalui Riset dan Teknologi</h1>
-        <p class="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto">Kami mengubah data menjadi keputusan strategis melalui analisis mendalam dan solusi R&D yang teruji.</p>
+        <h1 class="text-4xl md:text-6xl font-bold leading-tight"> {{ $heroContent->get('hero_title', 'Judul Hero') }} </h1>
+        <p class="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto"> {{ $heroContent->get('hero_subtitle', 'Subjudul Hero') }} </p>
         <a href="{{ route('locale.contact.index', ['locale' => app()->getLocale()]) }}" 
            class="mt-8 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300">
-            Hubungi Kami
+            {{ $heroContent->get('hero_button_text', 'Hubungi Kami') }}
         </a>
     </div>
 </div>

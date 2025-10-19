@@ -2,8 +2,9 @@
 
 namespace App\View\Composers;
 
-use App\Models\SettingTranslation;
 use Illuminate\View\View;
+use App\Models\SiteContent;
+use App\Models\SettingTranslation;
 
 class FooterComposer
 {
@@ -12,13 +13,16 @@ class FooterComposer
      */
     public function compose(View $view): void
     {
-        // Ambil semua data setting yang berawalan 'contact.' untuk locale saat ini
-        $contactSettings = SettingTranslation::query()
-            ->where('locale', app()->getLocale())
-            ->where('key', 'like', 'contact.%')
-            ->pluck('value', 'key'); // Mengubah hasil menjadi array ['key' => 'value']
+        //ambil elemen khusus untuk bagian footer
+        $keys = ['contact_address', 'contact_email', 'contact_phone', 'contact_instagram_url'];
+        
+        $contents = SiteContent::whereIn('key', $keys)->with('translations')->get();
 
-        // Kirim data ke view dengan nama variabel 'contactSettings'
+        $contactSettings = $contents->mapWithKeys(function ($item) {
+            $translation = $item->translations->firstWhere('locale', app()->getLocale());
+            return [$item->key => $translation->value ?? ''];
+        });
+
         $view->with('contactSettings', $contactSettings);
     }
 }
