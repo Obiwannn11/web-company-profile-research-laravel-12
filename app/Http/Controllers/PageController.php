@@ -20,7 +20,7 @@ class PageController extends Controller
 
 
         //ambil bagian hero dari site_contents
-        $keys = ['hero_title', 'hero_subtitle', 'hero_button_text'];
+        $keys = ['hero_title', 'hero_subtitle', 'hero_button_text', 'home_services_title', 'home_services_subtitle', 'cta_title', 'cta_subtitle', 'cta_button_text'];
         $contents = SiteContent::whereIn('key', $keys)->with('translations')->get();
 
         $heroContent = $contents->mapWithKeys(function ($item) {

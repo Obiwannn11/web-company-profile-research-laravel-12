@@ -15,8 +15,10 @@ class SiteContentSeeder extends Seeder
     {
         $contents = [
             'hero_title', 'hero_subtitle', 'hero_button_text',
+            'home_services_title', 'home_services_subtitle','cta_title', 'cta_subtitle', 'cta_button_text',
             'contact_address', 'contact_phone', 'contact_email', 'contact_maps_url',
             'company_name', 'company_focus', 'company_history',
+            'footer_name', 'footer_contact', 'footer_social_media',
         ];
 
         foreach ($contents as $key) {

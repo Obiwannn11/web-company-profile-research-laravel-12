@@ -20,8 +20,8 @@
 <div class="bg-gray-50 py-12">
     <div class="container mx-auto px-6">
         <div class="text-center mb-12">
-            <h2 class="text-3xl font-bold text-gray-900">Layanan Unggulan</h2>
-            <p class="mt-3 text-lg text-gray-600">Solusi yang kami tawarkan untuk mendukung pertumbuhan bisnis Anda.</p>
+            <h2 class="text-3xl font-bold text-gray-900">{{  $heroContent->get('home_services_title', 'Layanan Kami Hehe') }}</h2>
+            <p class="mt-3 text-lg text-gray-600"> {{ $heroContent->get('home_services_subtitle', 'Ini subtitle layanan') }}</p>
         </div>
 
         @if($featuredServices->isNotEmpty())
@@ -49,11 +49,11 @@
 {{-- 3. Call to Action (CTA) Section --}}
 <div class="bg-white py-12">
     <div class="container mx-auto px-6 text-center">
-        <h2 class="text-3xl font-bold text-gray-900">Siap Memulai Proyek Anda?</h2>
-        <p class="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">Diskusikan kebutuhan riset dan pengembangan Anda dengan tim ahli kami hari ini.</p>
+        <h2 class="text-3xl font-bold text-gray-900">{{ $heroContent->get('cta_title', 'ini CTA Title') }}</h2>
+        <p class="mt-3 text-lg text-gray-600 max-w-2xl mx-auto">{{ $heroContent->get('cta_subtitle', 'ini cta sub title') }}</p>
         <a href="{{ route('locale.contact.index', ['locale' => app()->getLocale()]) }}" 
            class="mt-8 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300">
-            Diskusikan Sekarang
+            {{ $heroContent->get('cta_button_text', 'Pencet disini') }}
         </a>
     </div>
 </div>
