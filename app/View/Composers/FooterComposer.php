@@ -14,7 +14,7 @@ class FooterComposer
     public function compose(View $view): void
     {
         //ambil elemen khusus untuk bagian footer
-        $keys = ['contact_address', 'contact_email', 'contact_phone', 'contact_instagram_url'];
+        $keys = ['contact_address', 'contact_email', 'contact_phone', 'contact_instagram_url', 'footer_name', 'footer_contact', 'footer_social_media'];
         
         $contents = SiteContent::whereIn('key', $keys)->with('translations')->get();
 

@@ -4,7 +4,7 @@
             
             {{-- Bagian Alamat --}}
             <div>
-                <h3 class="text-lg font-semibold">ReadyLab</h3>
+                <h3 class="text-lg font-semibold">{{ $contactSettings->get('footer_name', 'ReadyLabss') }}</h3>
                 <p class="mt-4 text-gray-400">
                     {{-- {{ dd($contactSettings) }} --}}
                     {{ $contactSettings->get('contact_address', 'Alamat tidak tersedia.') }}
@@ -13,7 +13,7 @@
 
             {{-- Bagian Kontak --}}
             <div>
-                <h3 class="text-lg font-semibold">Kontak</h3>
+                <h3 class="text-lg font-semibold">{{ $contactSettings->get('footer_contact', 'Qontak') }}</h3>
                 <ul class="mt-4 space-y-2 text-gray-400">
                     <li>
                         Email: 
@@ -32,7 +32,7 @@
 
             {{-- Bagian Sosial Media --}}
             <div>
-                <h3 class="text-lg font-semibold">Ikuti Kami</h3>
+                <h3 class="text-lg font-semibold">{{ $contactSettings->get('footer_social_media', 'Followw Kami') }}</h3>
                 <div class="mt-4">
                     <a href="{{ $contactSettings->get('contact_instagram_url', '#') }}" target="_blank" class="text-gray-400 hover:text-blue-400">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c-4.09 0-7.39 3.3-7.39 7.39s3.3 7.39 7.39 7.39 7.39-3.3 7.39-7.39S16.405 2 12.315 2zm0 12.68c-2.93 0-5.3-2.37-5.3-5.3s2.37-5.3 5.3-5.3 5.3 2.37 5.3 5.3-2.37 5.3-5.3 5.3zm4.23-7.82c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z" clip-rule="evenodd"/></svg>
