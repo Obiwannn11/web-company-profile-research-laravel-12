@@ -9,6 +9,9 @@
 
             {{-- Menu Desktop --}}
             <div class="hidden md:flex items-center space-x-6">
+
+                <a href="{{ route('locale.home', ['locale' => app()->getLocale()]) }}" class="text-gray-700 hover:text-blue-600">Home</a>
+                
                 {{-- Dropdown Services --}}
                 <div class="relative">
                     {{-- @click akan mengubah nilai servicesOpen saat tombol diklik --}}
@@ -45,6 +48,9 @@
                         <a href="{{ route('locale.about.faq', ['locale' => app()->getLocale()]) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">FAQ</a>
                     </div>
                 </div>
+
+                <a href="{{ route('locale.contact.index', ['locale' => app()->getLocale()]) }}" class="text-gray-700 hover:text-blue-600">Contacts Us</a>
+
             </div>
 
             {{-- Language Switcher & Mobile Menu Button --}}
