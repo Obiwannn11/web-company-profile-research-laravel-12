@@ -14,6 +14,7 @@ class SiteContentSeeder extends Seeder
     public function run(): void
     {
         $contents = [
+            'navbar_name', 'navbar_home', 'navbar_services', 'navbar_rnd', 'navbar_tools', 'navbar_about_us', 'navbar_contact_us',
             'hero_title', 'hero_subtitle', 'hero_button_text',
             'home_services_title', 'home_services_subtitle','cta_title', 'cta_subtitle', 'cta_button_text',
             'contact_address', 'contact_phone', 'contact_email', 'contact_maps_url',
