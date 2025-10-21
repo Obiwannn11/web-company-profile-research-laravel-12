@@ -36,6 +36,7 @@ class TeamController extends Controller
 
         $imagePath = $request->file('photo')->store('teams', 'public');
         $team = Team::create([
+            'name' => $validated['name'],
             'photo' => $imagePath,
             'sort_order' => $validated['sort_order'],
         ]);

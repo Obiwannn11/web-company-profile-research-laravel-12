@@ -22,13 +22,17 @@ class FaqController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'name' => 'nullable|accepted|string',
             'sort_order' => 'required|integer',
             'translations' => 'required|array',
             'translations.*.question' => 'required|string',
             'translations.*.answer' => 'required|string',
         ]);
 
-        $faq = Faq::create(['sort_order' => $validated['sort_order']]);
+        $faq = Faq::create([
+            'name' => $validated['name'],
+            'sort_order' => $validated['sort_order']
+        ]);
 
         foreach ($validated['translations'] as $locale => $data) {
             $faq->translations()->create(['locale' => $locale] + $data);
@@ -46,6 +50,7 @@ class FaqController extends Controller
     public function update(Request $request, Faq $faq)
     {
         $validated = $request->validate([
+            'name' => 'nullable|accepted|string',
             'sort_order' => 'required|integer',
             'translations' => 'required|array',
             'translations.*.question' => 'required|string',

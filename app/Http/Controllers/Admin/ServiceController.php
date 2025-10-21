@@ -24,6 +24,7 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
          $validated = $request->validate([
+            'name' => 'string|max:255',
             'slug' => 'required|string|unique:services,slug|max:255',
             'hero_image' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'translations' => 'required|array',
@@ -34,6 +35,7 @@ class ServiceController extends Controller
 
         $imagePath = $request->file('hero_image')->store('services', 'public');
         $service = Service::create([
+            'name' => $validated['name'],
             'slug' => $validated['slug'],
             'hero_image' => $imagePath,
         ]);
@@ -62,6 +64,7 @@ class ServiceController extends Controller
 
         // 1. Validasi data (mirip dengan store, tapi 'slug' harus unik kecuali untuk dirinya sendiri)
         $validated = $request->validate([
+            'name' => 'nullable|string|max:255',
             'slug' => 'required|string|max:255|unique:services,slug,' . $service->id,
             'hero_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'translations' => 'required|array',
