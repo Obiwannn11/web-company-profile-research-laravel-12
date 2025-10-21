@@ -24,7 +24,8 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'photo' => 'required|image|max:2048',
+            'name' => 'string|max:255',
+            'photo' => 'required|image|max:5012',
             'sort_order' => 'required|integer',
             'translations' => 'required|array',
             'translations.*.name' => 'required|string|max:255',
@@ -55,6 +56,7 @@ class TeamController extends Controller
     public function update(Request $request, Team $team)
     {
         $validated = $request->validate([
+            'name' => 'nullable|string|max:255',
             'photo' => 'nullable|image|max:2048',
             'sort_order' => 'required|integer',
             'translations' => 'required|array',
