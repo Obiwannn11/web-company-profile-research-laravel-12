@@ -27,6 +27,7 @@ class ToolController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
+            'name' => 'nullable|string|max:255',
             'logo_image' => 'nullable|image',
             'video_url' => 'nullable|url',
             'translations' => 'required|array',
@@ -39,7 +40,8 @@ class ToolController extends Controller
 
         // Simpan data utama (dari input ID) ke tabel 'tools'
         $tool = Tool::create([
-            'name' => $validated['translations']['id']['title'],
+            'name' => $validated['name'],
+            'title' => $validated['translations']['id']['title'],
             'description' => $validated['translations']['id']['description'],
             'logo_image' => $imagePath,
             'video_url' => $validated['video_url'],
@@ -47,12 +49,6 @@ class ToolController extends Controller
 
         // Gunakan LOOPING untuk menyimpan semua terjemahan lainnya
         foreach ($validated['translations'] as $locale => $data) {
-            // // Lewati 'id' karena sudah disimpan di atas
-            // if ($locale == 'id') {
-            //     continue;
-            // }
-
-            // Simpan terjemahan untuk locale  (en, fr, dll)
             $tool->translations()->create([
                 'locale' => $locale,
                 'title' => $data['title'],
@@ -93,10 +89,6 @@ class ToolController extends Controller
 
         // LOOPING untuk mengupdate semua terjemahan lainnya
         foreach ($validated['translations'] as $locale => $data) {
-            // Lewati 'id' karena sudah diupdate di atas
-            // if ($locale == 'id') {
-            //     continue;
-            // }
 
             // Update atau buat terjemahan untuk locale  (en, fr, dll)
             $tool->translations()->updateOrCreate(
