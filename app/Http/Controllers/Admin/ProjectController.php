@@ -23,7 +23,7 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'string|max:255',
             'type' => 'required',
             'category' => 'required',
             'image' => 'image|max:2048',
@@ -37,6 +37,7 @@ class ProjectController extends Controller
         $imagePath = $request->file('image')->store('projects', 'public');
 
         $project = Project::create([
+            'name' => $validated['name'],
             'type' => $validated['type'],
             'category' => $validated['category'],
             'image' => $imagePath,
@@ -59,7 +60,7 @@ class ProjectController extends Controller
     public function update(Request $request, Project $project)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'string|max:255',
             'type' => 'required',
             'category' => 'required',
             'image' => 'image|max:2048',
