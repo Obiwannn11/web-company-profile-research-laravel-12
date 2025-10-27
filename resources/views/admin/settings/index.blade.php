@@ -13,8 +13,9 @@
         </div>
 
         <div class="bg-white p-6 rounded-lg shadow-md">
-            @if(session('success'))
-                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+            @if (session('success'))
+                <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4"
+                    role="alert">
                     {{ session('success') }}
                 </div>
             @endif
@@ -22,25 +23,31 @@
             <div class="space-y-8">
                 @foreach ($settings as $key => $translations)
                     <div>
-                        <label class="block text-lg font-medium text-gray-800">{{ Str::title(str_replace('_', ' ', $key)) }}</label>
-                        <p class="text-sm text-gray-500 mb-2">Kunci: <code class="bg-gray-200 px-1 rounded">{{ $key }}</code></p>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {{-- Input Bahasa Indonesia --}}
-                            <div>
-                                <label for="{{ $key }}_id" class="block text-sm font-medium text-gray-700">Bahasa Indonesia (ID)</label>
-                                <textarea name="contents[{{ $key }}][id]" id="{{ $key }}_id" rows="3" 
-                                          class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ $translations['id'] ?? '' }}</textarea>
-                            </div>
-                            {{-- Input English --}}
-                            <div>
-                                <label for="{{ $key }}_en" class="block text-sm font-medium text-gray-700">English (EN)</label>
-                                <textarea name="contents[{{ $key }}][en]" id="{{ $key }}_en" rows="3" 
-                                          class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">{{ $translations['en'] ?? '' }}</textarea>
-                            </div>
+                        <label
+                            class="block text-lg font-medium text-gray-800">{{ Str::title(str_replace('_', ' ', $key)) }}</label>
+                        <p class="text-sm text-gray-500 mb-2">Kunci: <code
+                                class="bg-gray-200 px-1 rounded">{{ $key }}</code></p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-{{ count($supportedLocales) }} gap-4">
+
+                            @foreach ($supportedLocales as $locale)
+                                <div>
+                                    <label for="{{ $key }}_{{ $locale }}"
+                                        class="block text-sm font-medium text-gray-700">
+                                         Language : {{ strtoupper($locale) }}
+                                    </label>
+                                    <textarea name="contents[{{ $key }}][{{ $locale }}]" id="{{ $key }}_{{ $locale }}"
+                                        rows="3" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm">
+                            {{ $translations[$locale] ?? '' }}
+                        </textarea>
+                                </div>
+                            @endforeach
+
                         </div>
                     </div>
-                    <hr>
+                    @if (!$loop->last)
+                        <hr>
+                    @endif
                 @endforeach
             </div>
 

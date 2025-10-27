@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\SiteContent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\SiteContentTranslation;
 
 class SiteContentController extends Controller
 {
@@ -13,12 +14,27 @@ class SiteContentController extends Controller
         // Ubah data agar mudah diakses di view
         $settings = [];
         foreach ($contents as $content) {
-            $settings[$content->key] = [
-                'id' => $content->translations->firstWhere('locale', 'id')->value ?? '',
-                'en' => $content->translations->firstWhere('locale', 'en')->value ?? '',
-            ];
+            $translationsForKey = []; // array kosong untuk menampung key translation
+            
+            foreach ($content->translations as $translation) { // Loop untuk smua bahasa berdasarkan isi translationnya
+                $translationsForKey[$translation->locale] = $translation->value ?? ''; // menggunakan locale ('id','en',dll) sebagai key arrya
+            }
+
+            $settings[$content->key] = $translationsForKey; // Simpan semua terjemahan untuk key ini ke dalam array $settings
         }
-        return view('admin.settings.index', compact('settings'));
+
+        // mencari unik di locale 
+        $supportedLocales = SiteContentTranslation::distinct()
+                            ->pluck('locale') // Ambil hanya kolom 'locale'
+                            ->toArray(); // Ubah menjadi array biasa
+        //                  ->orderBy('locale') // Urutkan (opsional, tapi rapi)
+
+        // Jika tidak ada data sama sekali, pastikan minimal ada default locale
+        if (empty($supportedLocales)) {
+            $supportedLocales = ['id', 'en']; // Atau ambil dari config('app.fallback_locale')
+        }
+        
+        return view('admin.settings.index', compact('settings', 'supportedLocales'));
     }
 
     public function update(Request $request) {
@@ -30,7 +46,7 @@ class SiteContentController extends Controller
                 foreach ($translations as $locale => $value) {
                     $content->translations()->updateOrCreate(
                         ['locale' => $locale],
-                        ['value' => $value]
+                        ['value' => $value ?? '']
                     );
                 }
             }
