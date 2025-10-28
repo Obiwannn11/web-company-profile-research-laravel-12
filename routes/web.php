@@ -137,7 +137,7 @@ Route::group([
         Route::prefix('rnd')->name('rnd.')->group(function() {
             Route::get('/projects', [RndController::class, 'projects'])->name('projects');
             Route::get('/research', [RndController::class, 'research'])->name('research');
-            Route::get('/publications', [RndController::class, 'publications'])->name('publication');
+            Route::get('/publications', [RndController::class, 'publications'])->name('publications');
         });
 
         // Route untuk Tools
