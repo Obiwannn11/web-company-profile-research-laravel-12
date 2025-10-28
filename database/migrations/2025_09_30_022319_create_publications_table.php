@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('publication_category_id')->constrained('publication_categories')->onDelete('cascade');
+            $table->string('slug')->unique();
             $table->string('hero_image')->nullable();
             $table->timestamps();
         });

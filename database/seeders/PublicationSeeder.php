@@ -47,11 +47,15 @@ class PublicationSeeder extends Seeder
 
         foreach ($publications as $pub) {
             $category = PublicationCategory::where('slug', $pub['cat_slug'])->first();
-            $publication = Publication::create([
-                'name' => $pub['name'],
-                'publication_category_id' => $category->id,
-                'hero_image' => $pub['img'],
-            ]);
+            if ($category) {
+
+                $slug = Str::slug($pub['title_en']);
+
+                $publication = Publication::create([
+                    'publication_category_id' => $category->id,
+                    'hero_image' => $pub['img'],
+                    'slug' => $slug, 
+                ]);
             PublicationTranslation::create(['publication_id' => $publication->id, 'locale' => 'id', 'title' => $pub['title_id'], 'content' => $pub['content_id']]);
             PublicationTranslation::create(['publication_id' => $publication->id, 'locale' => 'en', 'title' => $pub['title_en'], 'content' => $pub['content_en']]);
         }

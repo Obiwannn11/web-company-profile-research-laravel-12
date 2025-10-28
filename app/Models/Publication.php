@@ -14,6 +14,7 @@ class Publication extends Model
         'name',
         'publication_category_id',
         'hero_image',
+        'slug',
     ];
 
     public function translations()

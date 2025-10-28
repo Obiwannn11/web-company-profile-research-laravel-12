@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Publication;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\PublicationCategory;
 use App\Http\Controllers\Controller;
@@ -40,6 +41,7 @@ class PublicationController extends Controller
         $publication = Publication::create([
             'publication_category_id' => $validated['publication_category_id'],
             'hero_image' => $imagePath,
+            'slug' => Str::slug($validated['translations']['en']['title']),
         ]);
 
         foreach ($validated['translations'] as $locale => $data) {
@@ -69,6 +71,7 @@ class PublicationController extends Controller
         ]);
 
         $publication->publication_category_id = $validated['publication_category_id'];
+        $publication->slug = Str::slug($validated['translations']['en']['title']);
 
         if ($request->hasFile('hero_image')) {
             Storage::disk('public')->delete($publication->hero_image);

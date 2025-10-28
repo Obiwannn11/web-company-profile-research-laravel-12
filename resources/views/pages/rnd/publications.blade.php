@@ -15,7 +15,7 @@
             <div class="flex justify-center items-center gap-2 md:gap-4 mb-10 flex-wrap">
                 {{-- Tombol "Semua" --}}
                 <a href="{{ route('locale.rnd.publications', ['locale' => app()->getLocale()]) }}"
-                   class="px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-200
+                    class="px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-200
                           {{ !request('category') ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' }}">
                     Semua
                 </a>
@@ -25,7 +25,7 @@
                     {{-- Ambil terjemahan nama kategori --}}
                     @php($categoryNameTranslation = $category->translations->firstWhere('locale', app()->getLocale()))
                     <a href="{{ route('locale.rnd.publications', ['locale' => app()->getLocale(), 'category' => $category->slug]) }}"
-                       class="px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-200
+                        class="px-4 py-2 text-sm font-semibold rounded-full transition-colors duration-200
                               {{ request('category') == $category->slug ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700 hover:bg-gray-300' }}">
                         {{-- Tampilkan nama kategori, fallback ke slug jika tidak ada --}}
                         {{ $categoryNameTranslation->name ?? $category->slug }}
@@ -43,8 +43,7 @@
                         {{-- Bagian gambar --}}
                         @if ($publication->hero_image)
                             <img src="{{ asset('storage/' . $publication->hero_image) }}"
-                                 alt="{{ $publication->current_translation->title }}"
-                                 class="w-full h-48 object-cover">
+                                alt="{{ $publication->current_translation->title }}" class="w-full h-48 object-cover">
                         @endif
 
                         {{-- Bagian konten --}}
@@ -58,7 +57,15 @@
                             <p class="mt-3 text-gray-600 line-clamp-3">
                                 {{ strip_tags($publication->current_translation->content) }}
                             </p>
-                            <a href="" class="mt-4 inline-block text-blue-600 font-semibold">Baca Selengkapnya &rarr;</a>
+                            {{-- {{ dd($publication->slug) migrate dulu tabel baru }} --}}
+                            {{-- <a href="{{ route('locale.rnd.publication.show', ['locale' => app()->getLocale(), 'slug' => $publication->slug]) }}"
+                                class="mt-4 inline-block text-blue-600 font-semibold">
+                                Baca Selengkapnya &rarr;
+                            </a> --}}
+                            <a href="#"
+                                class="mt-4 inline-block text-blue-600 font-semibold">
+                                Baca Selengkapnya &rarr;
+                            </a>
                         </div>
                     </div>
                 @endforeach

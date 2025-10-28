@@ -63,5 +63,14 @@ class RndController extends Controller
 
         return view('pages.rnd.publications', compact('categories', 'publications'));
     }
+
+    public function showPublication(string $locale,string $slug)
+    {
+        $publication = Publication::where('slug', $slug)
+            ->with(['translations', 'category.translations']) // Eager load relasi
+            ->firstOrFail(); // Otomatis 404 jika tidak ketemu
+
+        return view('pages.rnd.publication-show', compact('publication'));
+    }
     
 }

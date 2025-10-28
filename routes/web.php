@@ -138,8 +138,9 @@ Route::group([
             Route::get('/projects', [RndController::class, 'projects'])->name('projects');
             Route::get('/research', [RndController::class, 'research'])->name('research');
             Route::get('/publications', [RndController::class, 'publications'])->name('publications');
+            Route::get('/publication/{slug}', [RndController::class, 'showPublication'])->name('publication.show');
         });
-
+        
         // Route untuk Tools
         Route::get('/tools', [ToolController::class, 'index'])->name('tools.index');
 
