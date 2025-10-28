@@ -17,6 +17,7 @@ class SiteContentSeeder extends Seeder
             'navbar_name', 'navbar_home', 'navbar_services', 'navbar_rnd', 'navbar_tools', 'navbar_about_us', 'navbar_contact_us',
             'hero_title', 'hero_subtitle', 'hero_button_text',
             'home_services_title', 'home_services_subtitle','cta_title', 'cta_subtitle', 'cta_button_text',
+            'rnd_project_title', 'rnd_project_subtitle','rnd_publication_title', 'rnd_publication_subtitle','rnd_research_title', 'rnd_research_subtitle',
             'contact_address', 'contact_phone', 'contact_email', 'contact_maps_url',
             'company_name', 'company_focus', 'company_history',
             'footer_name', 'footer_contact', 'footer_social_media',
