@@ -43,7 +43,7 @@
                     <div x-show="rndOpen" @click.away="rndOpen = false" x-transition class="absolute mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20" style="display: none;">
                         <a href="{{ route('locale.rnd.research', ['locale' => app()->getLocale()]) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Research</a>
                     <a href="{{ route('locale.rnd.projects', ['locale' => app()->getLocale()]) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Projects</a>
-                        <a href="{{ route('locale.rnd.publication', ['locale' => app()->getLocale()]) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Publication</a>
+                        <a href="{{ route('locale.rnd.publications', ['locale' => app()->getLocale()]) }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">Publication</a>
                     </div>
                 </div>
 
