@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Publication;
 use Illuminate\Http\Request;
+use App\Models\PublicationCategory;
 
 class RndController extends Controller
 {
@@ -43,22 +45,23 @@ class RndController extends Controller
         return view('pages.rnd.research', compact('externalResearch', 'internalResearch'));
     }
 
-    public function publication()
+    public function publications(Request $request)
     {
-        $externalpublication = Project::query()
-                        ->where('type', 'publication')
-                        ->where('category', 'external')
-                        ->with('translations')
-                        ->orderBy('sort_order', 'asc')
-                        ->get();
-        $internalpublication = Project::query()
-                        ->where('type', 'publication')
-                        ->where('category', 'internal')
-                        ->with('translations')
-                        ->orderBy('sort_order', 'asc')
-                        ->get();
 
-        return view('pages.rnd.publications', compact('externalpublication', 'internalpublication'));
+        $categories = PublicationCategory::query()->with('translations')->get();
+
+        $publicationsQuery = Publication::query()->with(['translations', 'category.translations']);
+        
+        if ($request->filled('category')) {
+            // Filter berdasarkan slug kategori
+            $publicationsQuery->whereHas('category', function ($query) use ($request) {
+                $query->where('slug', $request->category);
+            });
+        }
+
+        $publications = $publicationsQuery->latest()->get();
+
+        return view('pages.rnd.publications', compact('categories', 'publications'));
     }
     
 }
