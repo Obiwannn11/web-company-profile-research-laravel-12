@@ -152,7 +152,7 @@ Route::group([
         });
 
         // Route untuk Contact
-        Route::get('/contact', [AboutController::class, 'index'])->name('contact.index');
+        Route::get('/contact', [AboutController::class, 'contact'])->name('contact.index');
 
     });
 
