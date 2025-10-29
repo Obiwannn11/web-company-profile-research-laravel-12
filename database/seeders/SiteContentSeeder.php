@@ -23,7 +23,7 @@ class SiteContentSeeder extends Seeder
             'contact_address', 'contact_phone', 'contact_email', 'contact_maps_url', 'contact_title', 'contact_subtitle',
             'tools_title', 'tools_subtitle', 'team_title_web','team_title', 'team_subtitle',
             'faq_title_web', 'faq_title', 'faq_subtitle',
-            'company_name', 'company_focus', 'company_history',
+            'company_name', 'company_focus', 'company_history', 'company_title',
             'footer_name', 'footer_contact', 'footer_social_media',
         ];
 

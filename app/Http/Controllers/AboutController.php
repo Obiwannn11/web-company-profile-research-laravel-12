@@ -15,7 +15,7 @@ class AboutController extends Controller
     {
 
         //ambil bagian company dari site_contents
-        $keys = ['company_name', 'company_focus', 'company_history'];
+        $keys = ['company_title','company_name', 'company_focus', 'company_history'];
         $contents = SiteContent::whereIn('key', $keys)->with('translations')->get();
 
         $companySettings = $contents->mapWithKeys(function ($item) {
