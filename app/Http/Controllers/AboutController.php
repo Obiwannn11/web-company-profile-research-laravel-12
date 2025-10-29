@@ -71,12 +71,12 @@ class AboutController extends Controller
         
         $contents = SiteContent::whereIn('key', $keys)->with('translations')->get();
 
-        $contactSettings = $contents->mapWithKeys(function ($item) {
+        $contactPageContent = $contents->mapWithKeys(function ($item) {
             $translation = $item->translations->firstWhere('locale', app()->getLocale());
             return [$item->key => $translation->value ?? ''];
         });
 
-        return view('pages.about.contact', compact('contacts', 'contactSettings'));
+        return view('pages.about.contact', compact('contacts', 'contactPageContent'));
     }
 
 }
