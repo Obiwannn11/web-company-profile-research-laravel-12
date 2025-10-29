@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'FAQ - ReadyLab')
+@section('title', ''. $pageContent->get('faq_title_web', 'Pertanyaan yang Sering Diajukan') . ' - ReadyLab')
 
 @section('content')
 <div class="py-12">
