@@ -25,7 +25,7 @@ class RndController extends Controller
     public function projects(): View
     {
 
-        $pageContent = $this->getSiteContent(['rnd_project_title', 'rnd_project_subtitle']);
+        $pageContent = $this->getSiteContent(['rnd_project_title', 'rnd_project_subtitle', 'rnd_project_internal', 'rnd_project_external']);
 
         $externalProjects = Project::query()
                         ->where('type', 'project')
@@ -46,7 +46,7 @@ class RndController extends Controller
 
     public function research()
     {
-        $pageContent = $this->getSiteContent(['rnd_research_title', 'rnd_research_subtitle']);
+        $pageContent = $this->getSiteContent(['rnd_research_title', 'rnd_research_subtitle', 'rnd_research_internal', 'rnd_research_external']);
         $externalResearch = Project::query()
                         ->where('type', 'research')
                         ->where('category', 'external')
