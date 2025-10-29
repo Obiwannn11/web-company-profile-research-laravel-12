@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Tools Kami - ReadyLab')
+@section('title', '' . $pageContent->get('tools_title', 'Peralatan & Teknologi') . ' - ReadyLab')
 
 @section('content')
 <div class="bg-white py-12">
     <div class="container mx-auto px-6">
         <div class="text-center mb-12">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Peralatan & Teknologi</h1>
-            <p class="mt-4 text-lg text-gray-600">Teknologi dan software yang kami gunakan untuk mendukung riset dan analisis.</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">{{ $pageContent->get('tools_title', 'Peralatan & Teknologiiiiii') }}</h1>
+            <p class="mt-4 text-lg text-gray-600">{{ $pageContent->get('tools_subtitle', 'Teknologi dan software yang kami gunakan untuk mendukung riset dan analisisssss.') }}</p>
         </div>
 
         @if($tools->isNotEmpty())
