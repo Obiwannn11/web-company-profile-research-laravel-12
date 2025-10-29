@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 {{-- 2. Mengatur judul halaman --}}
-@section('title', ''. $pageContent->get('team_title', 'Kenali Tim Profesional Kamiiiiii') . ' - ReadyLab')
+@section('title', ''. $pageContent->get('team_title_web', 'Kenali Tim Profesional Kamiiiiii') . ' - ReadyLab')
 
 {{-- 3. Mengisi konten halaman --}}
 @section('content')
