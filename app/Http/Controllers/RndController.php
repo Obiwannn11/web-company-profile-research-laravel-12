@@ -4,13 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\Publication;
+use App\Models\SiteContent;
 use Illuminate\Http\Request;
 use App\Models\PublicationCategory;
+use Illuminate\Support\Collection;
+use Illuminate\View\View;
 
 class RndController extends Controller
 {
-    public function projects()
+    public function getSiteContent(array $keys): Collection
     {
+        $contents = SiteContent::whereIn('key', $keys)->with('translations')->get();
+        
+        return $contents->mapWithKeys(function ($item) {
+            $translation = $item->translations->firstWhere('locale', app()->getLocale());
+            return [$item->key => $translation->value ?? ''];
+        });
+    }
+
+    public function projects(): View
+    {
+
+        $pageContent = $this->getSiteContent(['rnd_project_title', 'rnd_project_subtitle']);
+
         $externalProjects = Project::query()
                         ->where('type', 'project')
                         ->where('category', 'external')
@@ -24,11 +40,12 @@ class RndController extends Controller
                         ->orderBy('sort_order', 'asc')
                         ->get();
 
-        return view('pages.rnd.projects', compact('externalProjects', 'internalProjects'));
+        return view('pages.rnd.projects', compact('externalProjects', 'internalProjects', 'pageContent'));
     }
 
     public function research()
     {
+        $pageContent = $this->getSiteContent(['rnd_research_title', 'rnd_research_subtitle']);
         $externalResearch = Project::query()
                         ->where('type', 'research')
                         ->where('category', 'external')
@@ -42,11 +59,13 @@ class RndController extends Controller
                         ->orderBy('sort_order', 'asc')
                         ->get();
 
-        return view('pages.rnd.research', compact('externalResearch', 'internalResearch'));
+        return view('pages.rnd.research', compact('externalResearch', 'internalResearch', 'pageContent'));
     }
 
     public function publications(Request $request)
     {
+
+        $pageContent = $this->getSiteContent(['rnd_publication_title', 'rnd_publication_subtitle']);
 
         $categories = PublicationCategory::query()->with('translations')->get();
 
@@ -61,7 +80,7 @@ class RndController extends Controller
 
         $publications = $publicationsQuery->latest()->get();
 
-        return view('pages.rnd.publications', compact('categories', 'publications'));
+        return view('pages.rnd.publications', compact('categories', 'publications', 'pageContent'));
     }
 
     public function showPublication(string $locale,string $slug)
