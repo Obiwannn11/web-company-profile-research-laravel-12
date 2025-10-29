@@ -1,20 +1,18 @@
 @extends('layouts.app')
 
-@section('title', 'R&D Research - ReadyLab')
+@section('title', $pageContent->get('rnd_research_title', 'R&D Projectsss') . ' - ReadyLab') 
 
 @section('content')
     <div class="container mx-auto px-6 py-12">
         <div class="text-center mb-12">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Riset & Pengembangan</h1>
-            <p class="mt-4 text-lg text-gray-600">Jelajahi riset mendalam yang kami lakukan untuk inovasi berkelanjutan.</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">{{ $pageContent->get('rnd_research_title', 'Riset & Pengembangannngn') }}</h1>
+            <p class="mt-4 text-lg text-gray-600">{{ $pageContent->get('rnd_research_subtitle', 'Jelajahi riset mendalangm yang kami lakukan untuk inovasssssi berkelanjutan.') }}</p>
         </div>
 
-        {{-- Section Eksternal --}}
         @if ($externalResearch->isNotEmpty())
             <div x-data="{ activeTab: '{{ $externalResearch->first()->id }}' }" class="mt-10">
-                <h2 class="text-2xl font-semibold mb-4">Riset Eksternal</h2>
+                <h2 class="text-2xl font-semibold mb-4">{{ $pageContent->get('rnd_research_external', 'Risearch Eksternallll') }}</h2>
                 <div class="flex flex-col md:flex-row gap-8">
-                    {{-- Kolom Kiri: Nav Pills --}}
                     <div class="w-full md:w-1/3">
                         <ul class="space-y-2">
                             @foreach ($externalResearch as $item)
@@ -30,7 +28,6 @@
                             @endforeach
                         </ul>
                     </div>
-                    {{-- Kolom Kanan: Konten Detail --}}
                     <div class="w-full md:w-2/3">
                         @foreach ($externalResearch as $item)
                             @php($translation = $item->translations->firstWhere('locale', app()->getLocale()))
@@ -53,11 +50,10 @@
             </div>
         @endif
 
-        {{-- Section Internal --}}
         {{-- Section Eksternal --}}
         @if ($internalResearch->isNotEmpty())
             <div x-data="{ activeTab: '{{ $internalResearch->first()->id }}' }" class="mt-10">
-                <h2 class="text-2xl font-semibold mb-4">Riset Eksternal</h2>
+                <h2 class="text-2xl font-semibold mb-4">{{ $pageContent->get('rnd_research_internal', 'researchh inteeeeernall')  }}</h2>
                 <div class="flex flex-col md:flex-row gap-8">
                     {{-- Kolom Kiri: Nav Pills --}}
                     <div class="w-full md:w-1/3">
