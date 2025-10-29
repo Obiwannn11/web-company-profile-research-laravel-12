@@ -7,8 +7,8 @@
     <div class="container mx-auto px-6 max-w-4xl">
         
         <div class="text-center mb-12">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Pertanyaan yang Sering Diajukan</h1>
-            <p class="mt-4 text-lg text-gray-600">Temukan jawaban cepat untuk pertanyaan umum tentang layanan kami.</p>
+            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">{{ $pageContent->get('faq_title', 'Kenali Tim Profesional Kamiiii') }}</h1>
+            <p class="mt-4 text-lg text-gray-600">{{ $pageContent->get('faq_subtitle', 'Temukan jawaban cepat untuk pertanyaan umummmumm tentang layanan kami.') }}</p>
         </div>
 
         {{-- Container untuk daftar accordion FAQ --}}

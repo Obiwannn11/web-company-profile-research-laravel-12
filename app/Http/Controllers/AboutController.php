@@ -45,11 +45,18 @@ class AboutController extends Controller
 
     public function faq()
     {
+        $keys = ['faq_title_web', 'faq_title', 'faq_subtitle'];
+        $contents = SiteContent::whereIn('key', $keys)->with('translations')->get();
+        $pageContent = $contents->mapWithKeys(function ($item) {
+            $translation = $item->translations->firstWhere('locale', 'app()->getLocale()');
+            return [str_replace('_', '.', $item->key) => $translation->value ?? ''];
+        });
+
         $faqs = Faq::query()
                 ->with('translations')
                 ->orderBy('sort_order', 'asc')
                 ->get();
-        return view('pages.about.faq', compact('faqs'));
+        return view('pages.about.faq', compact('faqs', 'pageContent'));
     }
 
     public function contact()
