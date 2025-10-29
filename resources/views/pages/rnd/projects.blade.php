@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'R&D Projects - ReadyLab')
+@section('title', $pageContent->get('rnd_project_title', 'R&D Projects') . ' - ReadyLab') {{-- Dynamic Title --}}
 
 @section('content')
 <div class="container mx-auto px-6 py-12">
     <div class="text-center mb-12">
-        <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Proyek Research & Development</h1>
-        <p class="mt-4 text-lg text-gray-600">Jelajahi proyek inovatif yang kami kerjakan, baik secara internal maupun untuk klien eksternal.</p>
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900">{{ $pageContent->get('rnd_project_title', 'Proyek Research & Developmengggg') }}</h1>
+        <p class="mt-4 text-lg text-gray-600">{{ $pageContent->get('rnd_project_subtitle', 'Jelajahi proyek inovatiffff yang kami kerjakan, baik secara internallll maupun untuk klien eksternal.') }}</p>
     </div>
 
     {{-- Section Eksternal --}}

@@ -40,6 +40,7 @@ class RndController extends Controller
                         ->orderBy('sort_order', 'asc')
                         ->get();
 
+
         return view('pages.rnd.projects', compact('externalProjects', 'internalProjects', 'pageContent'));
     }
 
