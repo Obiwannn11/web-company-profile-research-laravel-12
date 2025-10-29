@@ -28,11 +28,19 @@ class AboutController extends Controller
 
     public function team()
     {
+        $keys = ['team_title', 'team_subtitle'];
+        $contents = SiteContent::whereIn('key', $keys)->with('translations')->get();
+
+        $pageContent = $contents->mapWithKeys(function ($item) {
+            $translation = $item->translations->firstWhere('locale', 'app()->getLocale()');
+            return [str_replace('_', '.', $item->key) => $translation->value ?? ''];
+        });
+        
         $teamMembers = Team::query()
                 ->with('translations')
                 ->orderBy('sort_order', 'asc')
                 ->get();
-        return view('pages.about.team', compact('teamMembers'));
+        return view('pages.about.team', compact('teamMembers', 'pageContent'));
     }
 
     public function faq()

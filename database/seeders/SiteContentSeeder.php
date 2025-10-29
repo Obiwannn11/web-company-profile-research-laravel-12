@@ -21,7 +21,7 @@ class SiteContentSeeder extends Seeder
             'rnd_publication_title', 'rnd_publication_subtitle',
             'rnd_research_title', 'rnd_research_subtitle', 'rnd_research_internal', 'rnd_research_external',
             'contact_address', 'contact_phone', 'contact_email', 'contact_maps_url', 'contact_title', 'contact_subtitle',
-            'tools_title', 'tools_subtitle',
+            'tools_title', 'tools_subtitle', 'team_title', 'team_subtitle',
             'company_name', 'company_focus', 'company_history',
             'footer_name', 'footer_contact', 'footer_social_media',
         ];
