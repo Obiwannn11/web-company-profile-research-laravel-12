@@ -14,11 +14,9 @@
 
         {{-- Section Eksternal --}}
         @if ($externalProjects->isNotEmpty())
-            {{-- Inisialisasi Alpine.js: set tab aktif ke proyek pertama --}}
             <div x-data="{ activeTab: '{{ $externalProjects->first()->id }}' }" class="mt-10">
-                <h2 class="text-2xl font-semibold mb-4">Proyek Eksternal</h2>
+                <h2 class="text-2xl font-semibold mb-4">{{ $pageContent->get('rnd_project_eksternal', 'Proyek Eksternallslslsl') }}</h2>
                 <div class="flex flex-col md:flex-row gap-8">
-                    {{-- Kolom Kiri: Nav Pills --}}
                     <div class="w-full md:w-1/3">
                         <ul class="space-y-2">
                             @foreach ($externalProjects as $project)
@@ -34,11 +32,9 @@
                             @endforeach
                         </ul>
                     </div>
-                    {{-- Kolom Kanan: Konten Detail --}}
                     <div class="w-full md:w-2/3">
                         @foreach ($externalProjects as $project)
                             @php($translation = $project->translations->firstWhere('locale', app()->getLocale()))
-                            {{-- Konten hanya tampil jika tab-nya aktif --}}
                             <div x-show="activeTab === '{{ $project->id }}'" x-transition>
                                 <div class="flex items-start gap-4">
                                     <div>
@@ -60,7 +56,7 @@
 
         @if ($internalProjects->isNotEmpty())
             <div x-data="{ activeTab: '{{ $internalProjects->first()->id }}' }" class="mt-10">
-                <h2 class="text-2xl font-semibold mb-4">Proyek Internal</h2>
+                <h2 class="text-2xl font-semibold mb-4">{{ $pageContent->get('rnd_project_internal', 'Proyek Internnnnal') }}</h2>
                 <div class="flex flex-col md:flex-row gap-8">
                     <div class="w-full md:w-1/3">
                         <ul class="space-y-2">
