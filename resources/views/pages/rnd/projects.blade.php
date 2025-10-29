@@ -15,7 +15,7 @@
         {{-- Section Eksternal --}}
         @if ($externalProjects->isNotEmpty())
             <div x-data="{ activeTab: '{{ $externalProjects->first()->id }}' }" class="mt-10">
-                <h2 class="text-2xl font-semibold mb-4">{{ $pageContent->get('rnd_project_eksternal', 'Proyek Eksternallslslsl') }}</h2>
+                <h2 class="text-2xl font-semibold mb-4">{{ $pageContent->get('rnd_project_external', 'Proyek Eksternallslslsl') }}</h2>
                 <div class="flex flex-col md:flex-row gap-8">
                     <div class="w-full md:w-1/3">
                         <ul class="space-y-2">
