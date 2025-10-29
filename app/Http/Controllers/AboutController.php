@@ -52,7 +52,7 @@ class AboutController extends Controller
             ->where('key', 'like', 'contact.%')
             ->pluck('value', 'key');
 
-        $keys = ['contact_address', 'contact_email', 'contact_phone', 'contact_instagram_url', 'footer_name', 'footer_contact', 'footer_social_media'];
+        $keys = ['contact_address', 'contact_email', 'contact_phone', 'contact_title', 'contact_subtitle', 'contact_maps_url'];
         
         $contents = SiteContent::whereIn('key', $keys)->with('translations')->get();
 

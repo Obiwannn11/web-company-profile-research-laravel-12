@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
-@section('title', 'Kontak Kami - ReadyLab')
+@section('title', $contactSettings->get('contact_title', 'Kontak Kami yahahahah') . ' - ReadyLab')
 
 @section('content')
 <div class="container mx-auto px-6 py-12">
     <div class="text-center mb-12">
-        <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Hubungi Kami</h1>
-        <p class="mt-4 text-lg text-gray-600">Kami siap membantu menjawab pertanyaan Anda.</p>
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900">{{ $contactSettings->get('contact_title', 'Kontak Kami yahahahah') }}</h1>
+        <p class="mt-4 text-lg text-gray-600">{{ $contactSettings->get('contact_subtitle', 'Kami siap membantu menjawab pertanyaan Anda nantii') }}</p>
     </div>
 
     {{-- Info Kontak --}}
