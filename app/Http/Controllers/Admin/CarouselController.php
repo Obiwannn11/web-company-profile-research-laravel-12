@@ -25,7 +25,7 @@ class CarouselController extends Controller
     {
         $validated = $request->validate([
             'image' => 'required|image|max:2048',
-            'link_url' => 'nullable|url',
+            'link_url' => 'nullable|string|max:255',
             'sort_order' => 'required|integer',
             'translations' => 'required|array',
             'translations.*.title' => 'nullable|string|max:255',
