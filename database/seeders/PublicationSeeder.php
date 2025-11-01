@@ -52,6 +52,7 @@ class PublicationSeeder extends Seeder
             if($category) {
                 $slug = Str::slug($pub['title_en']);
                 $publication = Publication::create([
+                    'name' => $pub['name'],
                     'publication_category_id' => $category->id,
                     'hero_image' => $pub['img'],
                     'slug' => $slug, 
