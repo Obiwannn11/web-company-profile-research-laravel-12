@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
          $this->call([
             SettingSeeder::class,
             ServiceSeeder::class,
+            SiteContentSeeder::class,
+            CarouselSeeder::class,
             PublicationSeeder::class,
             ProjectSeeder::class,
             ToolSeeder::class,
