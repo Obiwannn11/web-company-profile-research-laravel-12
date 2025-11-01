@@ -24,7 +24,7 @@ class TeamController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'string|max:255',
+            // 'name' => 'string|max:255||nullable',
             'photo' => 'required|image|max:5012',
             'sort_order' => 'required|integer',
             'translations' => 'required|array',
@@ -36,7 +36,7 @@ class TeamController extends Controller
 
         $imagePath = $request->file('photo')->store('teams', 'public');
         $team = Team::create([
-            'name' => $validated['name'],
+            // 'name' => $validated['name'],
             'photo' => $imagePath,
             'sort_order' => $validated['sort_order'],
         ]);
@@ -58,7 +58,7 @@ class TeamController extends Controller
     {
         $validated = $request->validate([
             'name' => 'nullable|string|max:255',
-            'photo' => 'nullable|image|max:2048',
+            'photo' => 'nullable|image',
             'sort_order' => 'required|integer',
             'translations' => 'required|array',
             'translations.*.name' => 'required|string|max:255',
