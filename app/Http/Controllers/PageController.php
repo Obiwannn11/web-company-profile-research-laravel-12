@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\Carousel;
 use App\Models\SiteContent;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,10 @@ class PageController extends Controller
             ->limit(3)
             ->get();
 
+        $carousels = Carousel::with('translations')
+            ->orderBy('sort_order', 'asc')
+            ->get();
+
 
         //ambil bagian hero dari site_contents
         $keys = ['hero_title', 'hero_subtitle', 'hero_button_text', 'home_services_title', 'home_services_subtitle', 'cta_title', 'cta_subtitle', 'cta_button_text'];
@@ -28,6 +33,6 @@ class PageController extends Controller
             return [$item->key => $translation->value ?? ''];
         });
 
-        return view('pages.home', compact('featuredServices', 'heroContent'));
+        return view('pages.home', compact('featuredServices', 'heroContent', 'carousels'));
     }
 }
