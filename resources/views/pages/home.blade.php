@@ -4,16 +4,42 @@
 
 @section('content')
 
-{{-- 1. Hero Section --}}
-<div class="relative bg-gray-800 text-white py-20 md:py-32">
-    <div class="container mx-auto px-6 text-center">
-        <h1 class="text-4xl md:text-6xl font-bold leading-tight"> {{ $heroContent->get('hero_title', 'Judul Hero') }} </h1>
-        <p class="mt-4 text-lg md:text-xl text-gray-300 max-w-3xl mx-auto"> {{ $heroContent->get('hero_subtitle', 'Subjudul Hero') }} </p>
-        <a href="{{ route('locale.contact.index', ['locale' => app()->getLocale()]) }}" 
-           class="mt-8 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300">
-            {{ $heroContent->get('hero_button_text', 'Hubungi Kami') }}
-        </a>
+
+{{-- 1. Hero Carousel Section --}}
+<div class="relative w-full h-96 md:h-[500px] lg:h-[600px] swiper-hero">
+    <div class="swiper-wrapper">
+        @foreach ($carousels as $slide)
+            @php($translation = $slide->translations->firstWhere('locale', app()->getLocale()))
+            <div class="swiper-slide relative">
+                {{-- Gambar Latar --}}
+                <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $translation->title ?? '' }}" class="w-full h-full object-cover">
+                {{-- Overlay Gelap --}}
+                <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+                {{-- Konten Teks --}}
+                <div class="absolute inset-0 flex items-center justify-center text-center text-white p-6">
+                    <div class_lq="max-w-2xl">
+                        @if($translation->title)
+                            <h1 class="text-3xl md:text-5xl font-bold leading-tight">{{ $translation->title }}</h1>
+                        @endif
+                        @if($translation->subtitle)
+                            <p class="mt-4 text-lg md:text-xl text-gray-200">{{ $translation->subtitle }}</p>
+                        @endif
+                        @if($translation->button_text && $slide->link_url)
+                            <a href="{{ $slide->link_url }}" 
+                               class="mt-8 inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300">
+                                {{ $translation->button_text }}
+                            </a>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        @endforeach
     </div>
+    {{-- Tombol Navigasi (Opsional) --}}
+    <div class="swiper-button-prev text-white"></div>
+    <div class="swiper-button-next text-white"></div>
+    {{-- Paginasi (Opsional) --}}
+    <div class="swiper-pagination"></div>
 </div>
 
 {{-- 2. Featured Services Section --}}
