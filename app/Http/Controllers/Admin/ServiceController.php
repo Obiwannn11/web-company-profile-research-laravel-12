@@ -24,7 +24,7 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
          $validated = $request->validate([
-            'name' => 'string|max:255',
+            // 'name' => 'string|max:255||nullable',
             'slug' => 'required|string|unique:services,slug|max:255',
             'hero_image' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'translations' => 'required|array',
@@ -35,7 +35,7 @@ class ServiceController extends Controller
 
         $imagePath = $request->file('hero_image')->store('services', 'public');
         $service = Service::create([
-            'name' => $validated['name'],
+            // 'name' => $validated['name'],
             'slug' => $validated['slug'],
             'hero_image' => $imagePath,
         ]);
