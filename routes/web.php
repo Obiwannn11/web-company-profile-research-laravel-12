@@ -10,6 +10,7 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\Admin\CarouselController as AdminCarouselController;
 use App\Http\Controllers\Admin\SiteContentController;
 use App\Http\Controllers\PublicationCategoryController;
 use App\Http\Controllers\Admin\FaqController as AdminFaqController;
@@ -34,6 +35,15 @@ Route::post('/admin/login', [AuthController::class, 'login']);
 Route::middleware(['auth', 'isAdmin'])->prefix('admin')->name('admin.')->group(function() {
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::controller(AdminCarouselController::class)->prefix('carousels')->name('carousels.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::get('/{carousel}/edit', 'edit')->name('edit');
+        Route::put('/{carousel}', 'update')->name('update');
+        Route::delete('/{carousel}', 'destroy')->name('destroy');
+    });
 
     Route::prefix('services')->name('services.')->group(function() {
         Route::get('/', [AdminServiceController::class, 'index'])->name('index');
@@ -128,6 +138,7 @@ Route::group([
 
         // Route untuk Home
         Route::get('/', [PageController::class, 'home'])->name('home');
+        
 
         // Routes untuk Services
         Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
