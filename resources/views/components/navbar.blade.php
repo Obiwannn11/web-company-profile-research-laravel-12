@@ -1,6 +1,6 @@
 {{-- x-data mendefinisikan "state" untuk komponen ini --}}
 {{-- servicesOpen dan aboutOpen awalnya 'false' (tertutup) --}}
-<header x-data="{ open: false, servicesOpen: false, aboutOpen: false, rndOpen: false }" class="bg-white shadow-md sticky top-0 z-50">
+<header x-data="{ open: false, servicesOpen: false, aboutOpen: false, rndOpen: false, languageOpen: false }" class="bg-white shadow-md sticky top-0 z-50">
     <nav class="container mx-auto px-6 py-4">
         <div class="flex items-center justify-between">
             <a href="{{ route('locale.home', ['locale' => app()->getLocale()]) }}" class="text-xl font-bold text-blue-600">
@@ -67,10 +67,31 @@
             </div>
 
             {{-- Language Switcher & Mobile Menu Button --}}
-            <div class="flex items-center">
-                <a href="{{ $languageSwitchUrl }}" class="text-sm font-semibold text-gray-600 hover:text-blue-600 mr-4">
-                    {{ strtoupper($targetLocale) }}
-                </a>
+           <div class="flex items-center">
+                
+                {{-- AWAL DROPDOWN BAHASA BARU --}}
+                <div class="relative">
+                    {{-- Tombol yang menampilkan bahasa aktif --}}
+                    <button @click="languageOpen = !languageOpen" class="flex items-center text-sm font-semibold text-gray-600 hover:text-blue-600 mr-4">
+                        <span>{{ $currentLocaleName }}</span>
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    
+                    {{-- Daftar link bahasa lain --}}
+                    <div x-show="languageOpen" @click.away="languageOpen = false" x-transition 
+                         class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20" style="display: none;">
+                        
+                        @foreach ($languageSwitchUrls as $localeCode => $localeData)
+                            <a href="{{ $localeData['url'] }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">
+                                {{ $localeData['name'] }}
+                            </a>
+                        @endforeach
+
+                    </div>
+                </div>
+                {{-- AKHIR DROPDOWN BAHASA BARU --}}
+
+                {{-- Tombol Hamburger untuk Mobile --}}
                 <div class="md:hidden">
                     <button @click="open = !open">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
