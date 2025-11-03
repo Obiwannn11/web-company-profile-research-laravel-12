@@ -5,6 +5,8 @@
 @section('content')
     <h1 class="text-2xl font-semibold text-gray-800 mb-6">Edit Slide Carousel</h1>
 
+     <x-form-errors />
+
     <div class="bg-white p-6 rounded-lg shadow-md">
         <form action="{{ route('admin.carousels.update', $carousel) }}" method="POST" enctype="multipart/form-data">
             @csrf
