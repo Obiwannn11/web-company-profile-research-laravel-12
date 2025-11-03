@@ -23,32 +23,35 @@ class NavbarComposer
         });
         
         $services = Service::query()->with('translations')->orderBy('created_at', 'asc')->get();
+
         $supportedLocales = [
             'id' => 'Indonesia',
-            'en' => 'English',
+            'en' => 'English'
         ];
-
         $currentLocale = app()->getLocale();
         $currentRouteName = request()->route() ? request()->route()->getName() : 'locale.home';
         $currentRouteParams = request()->route() ? request()->route()->parameters() : [];
+        
+        $languagePills = [];
 
-        $languageSwitchUrls = [];
         foreach ($supportedLocales as $localeCode => $localeName) {
-            // Jangan buat link untuk bahasa yang sedang aktif
-            if ($localeCode === $currentLocale) continue;
-            
-            $currentRouteParams['locale'] = $localeCode;
-            $languageSwitchUrls[$localeCode] = [
-                'name' => $localeName,
-                'url' => route($currentRouteName, $currentRouteParams)
+            $isActive = ($localeCode === $currentLocale);
+            // Siapkan parameter untuk URL
+            $routeParams = $currentRouteParams;
+            $routeParams['locale'] = $localeCode;
+
+            $languagePills[] = (object)[
+                'code' => $localeCode,
+                'name' => strtoupper($localeCode), // Menampilkan "ID" atau "EN"
+                'url' => route($currentRouteName, $routeParams),
+                'is_active' => $isActive,
             ];
         }
         
         $view->with([
             'servicesForNavbar' => $services,
             'navbarItem' => $navbarItem,
-            'currentLocaleName' => $supportedLocales[$currentLocale] ?? strtoupper($currentLocale),
-            'languageSwitchUrls' => $languageSwitchUrls,
+            'languagePills' => $languagePills,
         ]);
     }
 }

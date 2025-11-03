@@ -67,29 +67,23 @@
             </div>
 
             {{-- Language Switcher & Mobile Menu Button --}}
-           <div class="flex items-center">
-                
-                {{-- AWAL DROPDOWN BAHASA BARU --}}
-                <div class="relative">
-                    {{-- Tombol yang menampilkan bahasa aktif --}}
-                    <button @click="languageOpen = !languageOpen" class="flex items-center text-sm font-semibold text-gray-600 hover:text-blue-600 mr-4">
-                        <span>{{ $currentLocaleName }}</span>
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
+            <div class="flex items-center">
+                <div class="hidden md:flex items-center space-x-2 mr-4 border border-gray-200 rounded-full p-1">
                     
-                    {{-- Daftar link bahasa lain --}}
-                    <div x-show="languageOpen" @click.away="languageOpen = false" x-transition 
-                         class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-20" style="display: none;">
-                        
-                        @foreach ($languageSwitchUrls as $localeCode => $localeData)
-                            <a href="{{ $localeData['url'] }}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-50">
-                                {{ $localeData['name'] }}
-                            </a>
-                        @endforeach
+                    @foreach ($languagePills as $pill)
+                        <a href="{{ $pill->url }}"
+                           class="px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200
+                                  @if($pill->is_active)
+                                      bg-blue-600 text-white shadow-md
+                                  @else
+                                      text-gray-600 hover:bg-gray-100
+                                  @endif
+                           ">
+                            {{ $pill->name }} {{-- Tampil sebagai ID atau EN --}}
+                        </a>
+                    @endforeach
 
-                    </div>
                 </div>
-                {{-- AKHIR DROPDOWN BAHASA BARU --}}
 
                 {{-- Tombol Hamburger untuk Mobile --}}
                 <div class="md:hidden">
