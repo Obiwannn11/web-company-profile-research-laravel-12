@@ -13,7 +13,7 @@
                 {{-- Gambar Latar --}}
                 <img src="{{ asset('storage/' . $slide->image) }}" alt="{{ $slide->current_translation->title }}" class="w-full h-full object-cover">
                 {{-- Overlay Gelap --}}
-                <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+                <div class="absolute inset-0 bg-black opacity-70"></div>
                 {{-- Konten Teks --}}
                 <div class="absolute inset-0 flex items-center justify-center text-center text-white p-6">
                     <div class="max-w-2xl">
